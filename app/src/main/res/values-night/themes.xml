@@ -3,7 +3,17 @@
     <style name="Base.Theme.Basiccalculatorjava" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
-        <item name="colorPrimary">#6A0DAD</item>
-        <item name="colorPrimaryVariant">#DDA0DD</item>
+        <!-- Primary brand color -->
+        <item name="colorPrimary">#A01DB6</item>
+        <item name="colorPrimaryVariant">#B762C6</item>
+        <item name="colorOnPrimary">#3A283C</item>
+
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">#0D2CDD</item>
+        <item name="colorSecondaryVariant">#4E5CAC</item>
+        <item name="colorOnSecondary">#32354A</item>
+
+        <!-- Status bar color -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>
 </resources>

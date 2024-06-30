@@ -46,8 +46,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         assignId(button9, R.id.button_9);
         assignId(buttonAC, R.id.button_ac);
         assignId(buttonDot, R.id.button_dot);
-
-
     }
 
     void assignId(MaterialButton btn, int id) {
@@ -61,22 +59,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String buttonText = button.getText().toString();
         String dataToCalculate = solutionTv.getText().toString();
 
-//        When AC button is clicked the values will reset
+        // When AC button is clicked, the values will reset
         if (buttonText.equals("AC")) {
             solutionTv.setText("");
             resultTv.setText("0");
             return;
         }
 
-//        when clicked equals whatever is in result textview will be transferred to solution textview
+        // When equals is clicked, whatever is in the result textview will be transferred to the solution textview
         if (buttonText.equals("=")) {
             solutionTv.setText(resultTv.getText());
             return;
         }
 
-//        clears the character if the view
+        // Clear the last character if "C" is clicked
         if (buttonText.equals("C")) {
-            dataToCalculate = dataToCalculate.substring(0, dataToCalculate.length() - 1);
+            if (dataToCalculate.length() > 0) {
+                dataToCalculate = dataToCalculate.substring(0, dataToCalculate.length() - 1);
+            }
+            if (dataToCalculate.isEmpty()) {
+                dataToCalculate = "0";
+            }
         } else {
             dataToCalculate = dataToCalculate + buttonText;
         }
@@ -88,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (!finalResult.equals("Err")) {
             resultTv.setText(finalResult);
         }
-
     }
 
     String getResult(String data) {
@@ -98,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Scriptable scriptable = context.initSafeStandardObjects();
             String finalResult = context.evaluateString(scriptable, data, "Javascript", 1, null).toString();
 
-//            if result has decimal when not needed, this will remove the decimal
+            // If the result has a decimal when not needed, this will remove the decimal
             if (finalResult.endsWith(".0")) {
                 finalResult = finalResult.replace(".0", "");
             }
