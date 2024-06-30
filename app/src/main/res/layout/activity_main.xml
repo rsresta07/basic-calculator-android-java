@@ -13,7 +13,6 @@
         android:layout_height="match_parent"
         android:layout_above="@id/result_tv"
         android:layout_margin="16dp"
-        android:text="0"
         android:textAlignment="textEnd"
         android:textColor="@color/black"
         android:textSize="32dp" />
