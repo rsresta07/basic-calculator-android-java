@@ -2,6 +2,7 @@ package com.example.basic_calculator_java;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -55,6 +56,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         MaterialButton button = (MaterialButton) view;
         String buttonText = button.getText().toString();
-        solutionTv.setText(buttonText);
+        String dataToCalculate = solutionTv.getText().toString();
+
+//        When AC button is clicked the values will reset
+        if (buttonText.equals("AC")) {
+            solutionTv.setText("");
+            resultTv.setText("0");
+            return;
+        }
+
+//        when clicked equals whatever is in result textview will be transferred to solution textview
+        if (buttonText.equals("=")) {
+            solutionTv.setText(resultTv.getText());
+            return;
+        }
+
+//        clears the character if the view
+        if(buttonText.equals("C")) {
+            dataToCalculate =dataToCalculate.substring(0, dataToCalculate.length()-1);
+        }else{
+            dataToCalculate = dataToCalculate + buttonText;
+        }
+
+
+        solutionTv.setText(dataToCalculate);
+
+    }
+
+    String getResult(String data) {
+        return "calculated";
     }
 }

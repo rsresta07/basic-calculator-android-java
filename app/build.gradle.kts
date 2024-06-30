@@ -37,4 +37,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation("com.faendir.rhino:rhino-android:1.5.2")
 }
