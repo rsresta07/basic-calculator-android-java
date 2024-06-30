@@ -5,17 +5,18 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorOnPrimary"
     tools:context=".MainActivity">
 
     <!-- TextView for displaying the current input -->
     <TextView
         android:id="@+id/solution_tv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_above="@id/result_tv"
         android:layout_margin="16dp"
         android:textAlignment="textEnd"
-        android:textColor="@color/black"
+        android:textColor="?android:textColorPrimary"
         android:textSize="32dp" />
 
     <!-- TextView for displaying the calculation result -->
@@ -27,7 +28,7 @@
         android:layout_margin="16dp"
         android:text="0"
         android:textAlignment="textEnd"
-        android:textColor="@color/black"
+        android:textColor="?android:textColorPrimary"
         android:textSize="64dp" />
 
     <!-- LinearLayout for containing all calculator buttons -->

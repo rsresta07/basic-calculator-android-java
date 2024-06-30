@@ -2,7 +2,6 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Basiccalculatorjava" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
         <!-- Primary brand color -->
         <item name="colorPrimary">#A01DB6</item>
         <item name="colorPrimaryVariant">#B762C6</item>
@@ -15,5 +14,9 @@
 
         <!-- Status bar color -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+        <!-- Text colors for dark mode -->
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:textColorSecondary">#FFFFFF</item>
     </style>
 </resources>
