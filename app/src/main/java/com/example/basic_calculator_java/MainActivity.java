@@ -11,9 +11,16 @@ import com.google.android.material.button.MaterialButton;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Scriptable;
 
+/**
+ * MainActivity class for the basic calculator application.
+ * Implements View.OnClickListener to handle button click events.
+ */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    // TextViews for displaying the result and the current input
     TextView resultTv, solutionTv;
+
+    // MaterialButton references for all the calculator buttons
     MaterialButton buttonC, buttonBrackOpen, buttonBrackClose;
     MaterialButton buttonDivide, buttonMultiply, buttonPlus, buttonMinus, buttonEquals;
     MaterialButton button0, button1, button2, button3, button4, button5, button6, button7, button8, button9;
@@ -23,9 +30,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Initialize TextViews
         resultTv = findViewById(R.id.result_tv);
         solutionTv = findViewById(R.id.solution_tv);
 
+        // Assign buttons by ID and set click listeners
         assignId(buttonC, R.id.button_c);
         assignId(buttonBrackOpen, R.id.button_open_bracket);
         assignId(buttonBrackClose, R.id.button_close_bracket);
@@ -59,20 +69,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String buttonText = button.getText().toString();
         String dataToCalculate = solutionTv.getText().toString();
 
-        // When AC button is clicked, the values will reset
+        // When AC button is clicked, reset the input and result
         if (buttonText.equals("AC")) {
             solutionTv.setText("");
             resultTv.setText("0");
             return;
         }
 
-        // When equals is clicked, whatever is in the result textview will be transferred to the solution textview
+        // When equals button is clicked, transfer the result to the input
         if (buttonText.equals("=")) {
             solutionTv.setText(resultTv.getText());
             return;
         }
 
-        // Clear the last character if "C" is clicked
+        // When C button is clicked, clear the last character
         if (buttonText.equals("C")) {
             if (dataToCalculate.length() > 0) {
                 dataToCalculate = dataToCalculate.substring(0, dataToCalculate.length() - 1);
@@ -84,10 +94,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             dataToCalculate = dataToCalculate + buttonText;
         }
 
+        // Update the input TextView
         solutionTv.setText(dataToCalculate);
 
+        // Calculate the result and update the result TextView
         String finalResult = getResult(dataToCalculate);
-
         if (!finalResult.equals("Err")) {
             resultTv.setText(finalResult);
         }
@@ -100,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Scriptable scriptable = context.initSafeStandardObjects();
             String finalResult = context.evaluateString(scriptable, data, "Javascript", 1, null).toString();
 
-            // If the result has a decimal when not needed, this will remove the decimal
+            // If the result ends with ".0", remove the decimal part
             if (finalResult.endsWith(".0")) {
                 finalResult = finalResult.replace(".0", "");
             }
