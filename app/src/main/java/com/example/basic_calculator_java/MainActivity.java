@@ -59,11 +59,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         assignId(buttonDot, R.id.button_dot);
     }
 
+    /**
+     * Helper method to assign an ID to a button and set its click listener
+     */
     void assignId(MaterialButton btn, int id) {
         btn = findViewById(id);
         btn.setOnClickListener(this);
     }
 
+    /**
+     * Handles button click events for the calculator
+     */
     @Override
     public void onClick(View view) {
         MaterialButton button = (MaterialButton) view;
@@ -105,6 +111,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * Evaluates the mathematical expression and returns the result
+     */
     String getResult(String data) {
         try {
             Context context = Context.enter();
@@ -123,9 +132,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private static final int TIME_INTERVAL = 2000;
+    private static final int TIME_INTERVAL = 2000; // Time interval for double back press to exit
     private long backPressed;
 
+    /**
+     * Handles the back button press to exit the app
+     */
     @Override
     public void onBackPressed() {
         if (backPressed + TIME_INTERVAL > System.currentTimeMillis()) {
