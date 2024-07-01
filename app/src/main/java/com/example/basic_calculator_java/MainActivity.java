@@ -3,6 +3,7 @@ package com.example.basic_calculator_java;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // When C button is clicked, clear the last character
         if (buttonText.equals("C")) {
-            if (dataToCalculate.length() > 0) {
+            if (!dataToCalculate.isEmpty()) {
                 dataToCalculate = dataToCalculate.substring(0, dataToCalculate.length() - 1);
             }
             if (dataToCalculate.isEmpty()) {
@@ -121,4 +122,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return "Err";
         }
     }
+
+    private static final int TIME_INTERVAL = 2000;
+    private long backPressed;
+
+    @Override
+    public void onBackPressed() {
+        if (backPressed + TIME_INTERVAL > System.currentTimeMillis()) {
+            super.onBackPressed();
+            return;
+        } else {
+            Toast.makeText(getBaseContext(), "Press Back Again to Exit App", Toast.LENGTH_SHORT).show();
+        }
+        backPressed = System.currentTimeMillis();
+    }
+
 }
